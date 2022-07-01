@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
 
-/* Help Comments 
+using namespace std; // allows cout << instead of std::cout <<, etc.
+
+/* 
+    Help Comments 
 
     std::cin and std::cout always go on the left-hand side of the statement.
 
@@ -17,59 +20,101 @@
         (if std::cin represents the keyboard, the input data is moving from the keyboard to the variable). 
         std::cin >> x moves the value the user entered from the keyboard into x
 
+    Kind of following this but not really at the same time lol 
+    https://www.learncpp.com/cpp-tutorial/forward-declarations/
 */
-void OutputData(int _largeNumber = 0, int _smallNumber = 0, std::string _person = "", int _birthMonth = 0, int _birthDay = 0, int _birthYear = 0) {
-    std::cout << " Ouputting data\n";
-    std::cout << "      Hello World!\n";
-    std::cout << "      This is an example of a new line in the Hello World application.\n";
 
-    std::cout << "      The number " << _largeNumber << " is larger than " << _smallNumber << ".\n";
+/* Forward Declarations
+    - Add these at the top and function ordering doesn't matter lol 
+*/
+int mathAdd(int a, int b);
+int mathSubtract(int a, int b);
+int mathMultiply(int a, int b);
+int mathDevide(int a, int b);
+void LettuceMaff(int _smallNumber, int _largeNumber);
+void OutputData(int _largeNumber, int _smallNumber, string _person, int _birthMonth, int _birthDay, int _birthYear);
+void ReadingData();
+int ReadingDataUserInput();
 
-    std::cout << "      My name is " << _person << ".\n";
-
-    std::cout << "      " << _person << "'s Birthday is " << _birthMonth << "-" << _birthDay << "-" << _birthYear << ".\n";
-}
-
+// Main Call - Program starts here
 int main()
 {
     // Variables
-    std::string person = "Ginger Max";
+    string person = "Ginger Max";
 
     int birthDay = 20;
     int birthMonth = 4;
     int birthYear = 1869;
     int smallNumber = 1;
     int largeNumber = 45;
-    int maxPhoneNumber = 0;
-    int maxHousePhoneNumber = 0;
 
     // Outputting data
-    OutputDate(largeNumber, smallNumber, person, birthMonth, birthDay, birthYear);
+    OutputData(largeNumber, smallNumber, person, birthMonth, birthDay, birthYear);
 
     // Reading data from Console and Outputting it
-    std::cout << " Reading data from Console and Outputting it\n";
-    std::cout << "      Do you know what Max Mayfields mobile number and house number is?  I don't have then.\n";
-    std::cout << "      Enter numbers seperated via a space 1111111 2222222.\n";
-
-    std::cin >> maxPhoneNumber >> maxHousePhoneNumber;
-
-    std::cout << "      Thank you, I will store " << maxPhoneNumber << " as Max's Phone Number, and " << maxHousePhoneNumber <<
-                 "       as their House Phone Number.\n\n";
+    ReadingData();
 
     // Lets do some maff
-    std::cout << " Lettuce dookie maff\n";
-    std::cout << "      1 + 45 is " << smallNumber + largeNumber << std::endl;
-    std::cout << "      1 - 45 is " << smallNumber - largeNumber << std::endl;
-    std::cout << "      1 * 45 is " << smallNumber * largeNumber << std::endl;
-    std::cout << "      1 / 45 is " << smallNumber / largeNumber << std::endl;
+    LettuceMaff(smallNumber, largeNumber);
 
     return 0;
 }
 
-//int mathAdd(int num1, int num2) {
-//    return num1 + num2;
-//}
-//
-//int mathSubtract(int num1, int num2) {
-//    return num1 - num2;
-//}
+// Our actual functions wit data n shizz :)
+void OutputData(int _largeNumber, int _smallNumber, string _person, int _birthMonth, int _birthDay, int _birthYear) {
+    cout << " Ouputting data\n";
+    cout << "      Hello World!\n";
+    cout << "      This is an example of a new line in the Hello World application.\n";
+
+    cout << "      The number " << _largeNumber << " is larger than " << _smallNumber << ".\n";
+
+    cout << "      My name is " << _person << ".\n";
+
+    cout << "      " << _person << "'s Birthday is " << _birthMonth << "-" << _birthDay << "-" << _birthYear << ".\n";
+}
+
+void ReadingData() {
+    cout << " Reading data from Console and Outputting it\n";
+    cout << "      Please enter Max Mayfields Cellphone Number\n";
+
+    int cellPhone{ ReadingDataUserInput() };
+
+    cout << "     Please enter Max Mayfields Housephone Number\n";
+
+    int housePhone{ ReadingDataUserInput() };
+
+    //cin >> _maxPhoneNumber >> _maxHousePhoneNumber;
+
+    cout << "      Thank you, I will store " << cellPhone << " as Max's Cellphone Number, and " << housePhone << " as their Housephone Number.\n\n";
+}
+
+int ReadingDataUserInput() {
+    int userInput;
+    cin >> userInput;
+    return userInput;
+}
+
+void LettuceMaff(int _smallNumber, int _largeNumber) {
+    cout << " Lettuce dookie maff\n";
+    cout << "      1 + 45 is " << mathAdd(_smallNumber, _largeNumber) << endl;
+    cout << "      1 - 45 is " << mathSubtract(_smallNumber, _largeNumber) << endl;
+    cout << "      1 * 45 is " << mathMultiply(_smallNumber, _largeNumber) << endl;
+    cout << "      1 / 45 is " << mathDevide(_smallNumber, _largeNumber) << endl;
+    cout << "      1 + (1 * 45) is " << mathAdd(_smallNumber, mathMultiply(_smallNumber, _largeNumber)) << endl;
+}
+
+int mathAdd(int a, int b) {
+    return a + b;
+}
+
+int mathSubtract(int a, int b) {
+    return a - b;
+}
+
+int mathMultiply(int a, int b) {
+    return a * b;
+}
+
+int mathDevide(int a, int b) {
+    return a / b;
+}
